@@ -101,6 +101,7 @@ return {
       })
       require("lspconfig").emmet_ls.setup({
         capabilities = capabilities,
+        filetype = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue", "php" },
       })
       require("lspconfig").cssls.setup({
         capabilities = capabilities,
