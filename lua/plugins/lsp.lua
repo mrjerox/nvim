@@ -17,7 +17,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "emmet_ls", "intelephense", "vtsls", "eslint", "cssls" },
+        ensure_installed = { "lua_ls", "emmet_ls", "intelephense", "vtsls", "eslint", "cssls", "astro" },
       })
     end,
   },
@@ -120,6 +120,9 @@ return {
             command = "EslintFixAll",
           })
         end,
+      })
+      require("lspconfig").astro.setup({
+        capabilities = capabilities,
       })
     end,
   },
