@@ -1,1 +1,5 @@
 # nvim
+required >= 0.9.0
+
+required:
+  - rg, fd, gcc, lazygit
