@@ -43,8 +43,6 @@ return {
       "xml",
       "yaml",
       "php",
-      "css",
-      "scss",
       "astro",
     },
   },
