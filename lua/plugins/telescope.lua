@@ -24,6 +24,7 @@ return {
   config = function(_, opts)
     require("telescope").setup(opts)
 
+    local telescope = require("telescope")
     local builtin = require("telescope.builtin")
 
     vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
@@ -32,6 +33,7 @@ return {
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 
     -- Load the telescope-ui-select extension
-    require("telescope").load_extension("ui-select")
+    telescope.load_extension("ui-select")
+    telescope.load_extension("noice")
   end,
 }
