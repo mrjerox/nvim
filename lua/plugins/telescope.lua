@@ -5,25 +5,27 @@ return {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim" }
   },
-  config = function()
-    require("telescope").setup({
-      defaults = {
-        -- Default configuration for telescope goes here:
-        -- config_key = value,
-        file_ignore_patterns = {
-          "node_modules",
-          ".git",
-          ".vscode",
-        },
+  opts = {
+    defaults = {
+      -- Default configuration for telescope goes here:
+      -- config_key = value,
+      file_ignore_patterns = {
+        "node_modules",
+        ".git",
+        ".vscode",
       },
-      extensions = {
-        ["ui-select"] = {
-          require("telescope.themes").get_dropdown {}
-        }
+    },
+    extensions = {
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown {}
       }
-    })
+    }
+  },
+  config = function(_, opts)
+    require("telescope").setup(opts)
 
     local builtin = require("telescope.builtin")
+
     vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
     vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
     vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })

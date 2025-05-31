@@ -107,9 +107,6 @@ return {
         capabilities = capabilities,
       })
       require("lspconfig").vtsls.setup({
-        -- on_init = function(client, _)
-        -- 	client.server_capabilities.semanticTokensProvider = nil
-        -- end,
         capabilities = capabilities,
       })
       require("lspconfig").eslint.setup({
