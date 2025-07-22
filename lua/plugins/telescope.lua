@@ -14,6 +14,11 @@ return {
         ".git",
         ".vscode",
       },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+      },
     },
     extensions = {
       ["ui-select"] = {

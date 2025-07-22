@@ -54,6 +54,7 @@ opt.splitbelow = true      -- Put new windows below current
 opt.splitkeep = "screen"
 opt.splitright = true      -- Put new windows right of current
 opt.tabstop = 2            -- Number of spaces tabs count for
+opt.softtabstop = 2        -- Number of spaces tabs count for while editing
 opt.termguicolors = true   -- True color support
 opt.undofile = true
 opt.undolevels = 10000
@@ -65,17 +66,18 @@ opt.wrap = false                   -- Disable line wrap
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
--- Diagnostic
-vim.diagnostic.config({
-  underline = true,
-  signs = true,
-  virtual_text = false,
-  float = {
-    show_header = true,
-    source = "if_many",
-    border = "rounded",
-    focusable = false,
-  },
-  update_in_insert = false, -- default to false
-  severity_sort = false,    -- default to false
-})
+
+-- -- Diagnostic
+-- vim.diagnostic.config({
+--   underline = true,
+--   signs = true,
+--   virtual_text = false,
+--   float = {
+--     show_header = true,
+--     source = "if_many",
+--     border = "rounded",
+--     focusable = false,
+--   },
+--   update_in_insert = false, -- default to false
+--   severity_sort = false,    -- default to false
+-- })
