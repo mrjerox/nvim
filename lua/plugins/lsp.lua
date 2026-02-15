@@ -15,24 +15,34 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      require("lspconfig").lua_ls.setup({
+      lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
-      require("lspconfig").intelephense.setup({
+      lspconfig.intelephense.setup({
         capabilities = capabilities,
       })
-      require("lspconfig").emmet_ls.setup({
+      lspconfig.emmet_ls.setup({
         capabilities = capabilities,
         filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue", "php" },
       })
-      require("lspconfig").cssls.setup({
+      lspconfig.cssls.setup({
         capabilities = capabilities,
       })
-      require("lspconfig").vtsls.setup({
+      lspconfig.vtsls.setup({
         capabilities = capabilities,
       })
-      require("lspconfig").eslint.setup({
+      lspconfig.yamlls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.jsonls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.marksman.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.eslint.setup({
         capabilities = capabilities,
         on_attach = function(client, bufnr)
           vim.api.nvim_create_autocmd("BufWritePre", {
@@ -41,7 +51,7 @@ return {
           })
         end,
       })
-      require("lspconfig").astro.setup({
+      lspconfig.astro.setup({
         capabilities = capabilities,
       })
     end,
@@ -55,7 +65,7 @@ return {
       "saadparwaiz1/cmp_luasnip",
     },
     config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").load()
     end,
   },
   {
@@ -130,8 +140,14 @@ return {
         typescript = { "prettierd", "prettier", stop_after_first = true },
         javascriptreact = { "prettierd", "prettier", stop_after_first = true },
         typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+        yaml = { "yamlfmt", "prettierd", "prettier", stop_after_first = true },
+        yml = { "yamlfmt", "prettierd", "prettier", stop_after_first = true },
         php = { "intelephense", lsp_format = "fallback" },
         astro = { "prettierd", lsp_format = "fallback" },
+        json = { "jsonls", lsp_format = "fallback" },
+        jsonc = { "jsonls", lsp_format = "fallback" },
+        markdown = { "prettierd", "cbfmt", lsp_format = "fallback", stop_after_first = true },
+        html = { "prettier", "prettierd", lsp_format = "fallback", stop_after_first = true },
       },
       format_on_save = {
         -- These options will be passed to conform.format()
@@ -139,9 +155,6 @@ return {
         lsp_format = "fallback",
       }
     },
-    config = function(_, opts)
-      require("conform").setup(opts)
-    end,
   },
   {
     "folke/trouble.nvim",
