@@ -33,6 +33,10 @@ return {
 		event = "VeryLazy",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
 			vim.lsp.config("emmet_ls", {
 				filetypes = {
 					"css",

@@ -23,7 +23,7 @@ return {
 				},
 			},
 		},
-		otps = {
+		opts = {
 			lsp = {
 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				override = {
@@ -42,10 +42,13 @@ return {
 			},
 		},
 		config = function(_, opts)
-			if vim.o.filetype == "lazy" then
-				vim.cmd([[messages clear]])
-			end
 			require("noice").setup(opts)
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "lazy",
+				callback = function()
+					vim.cmd([[messages clear]])
+				end,
+			})
 		end,
 	},
 	{

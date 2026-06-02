@@ -17,7 +17,7 @@ local opt = vim.opt
 opt.autowrite = true -- Enable auto write
 -- only set clipboard if not in ssh, to make sure the OSC 52
 -- integration works automatically. Requires Neovim >= 0.10.0
-opt.clipboard = "unnamedplus" -- Use system clipboard
+opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Use system clipboard (disable in SSH for OSC 52)
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
@@ -66,8 +66,4 @@ opt.wrap = false -- Disable line wrap
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 
--- Other
--- Hide all semantic highlights
-for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-	vim.api.nvim_set_hl(0, group, {})
-end
+

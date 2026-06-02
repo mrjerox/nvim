@@ -10,11 +10,6 @@ return {
     -- vim.o.foldlevelstart = 99
     -- vim.o.foldenable = true
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.foldingRange = {
-      dynamicRegistration = false,
-      lineFoldingOnly = true
-    }
     ufo.setup()
 
     vim.keymap.set('n', 'zR', ufo.openAllFolds)

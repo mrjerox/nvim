@@ -54,5 +54,5 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
--- Go to
-vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+-- Go to (pcall-safe when no LSP client attached)
+map("n", "gd", function() pcall(vim.lsp.buf.definition) end, { desc = "Go to Definition" })
