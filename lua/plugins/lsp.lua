@@ -19,7 +19,7 @@ return {
 					"jsonls",
 					"marksman",
 					"pylsp",
-					"yamlfmt",
+					-- "yamlfmt",
 					-- "black",
 					-- "prettierd",
 					-- "prettier",
