@@ -4,7 +4,7 @@
 
 ```
 init.lua → lua/config/{lazy,autocmds,keymaps,option}.lua
-         → lua/plugins/{lsp,treesitter,telescope,ui,ufo,lazygit,grug-far}.lua
+         → lua/plugins/{autopairs,lsp,lazygit,surround,telescope,todo-comments,treesitter,ufo,ui,grug-far}.lua
 ```
 
 - Base distribution: `LazyVim/LazyVim` — provides default keymaps, options, extras (which-key, comment, gitsigns, neo-tree).

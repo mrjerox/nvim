@@ -19,10 +19,10 @@ return {
 					"jsonls",
 					"marksman",
 					"pylsp",
+					"yamlfmt",
 					-- "black",
 					-- "prettierd",
 					-- "prettier",
-					-- "yamlfmt"
 				},
 				-- automatic_enable = false,
 			})
