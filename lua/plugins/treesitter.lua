@@ -1,11 +1,11 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	branch = "main",
-  build = "TSUpdate",
+	build = "TSUpdate",
 	version = false, -- last release is way too old and doesn't work on Windows
 	-- event = "VeryLazy",
-event = { "BufReadPost", "BufNewFile" },
-	-- cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
+	event = { "BufReadPost", "BufNewFile" },
+	cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
 	opts = {
 		-- LazyVim config for treesitter
 		ensure_installed = {
@@ -36,9 +36,7 @@ event = { "BufReadPost", "BufNewFile" },
 			"scss",
 		},
 		-- indent = { enable = true },
-		highlight = { enable = true,
-    additional_vim_regex_highlighting = false,
-  },
+		highlight = { enable = true, additional_vim_regex_highlighting = false },
 	},
 	config = function(_, opts)
 		local TS = require("nvim-treesitter")
