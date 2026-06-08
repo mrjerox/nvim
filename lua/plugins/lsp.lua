@@ -17,6 +17,12 @@ return {
 					"stylua",
 					"yamlls",
 					"jsonls",
+					"marksman",
+					"pylsp",
+					-- "yamlfmt",
+					-- "black",
+					-- "prettierd",
+					-- "prettier",
 				},
 				-- automatic_enable = false,
 			})
@@ -27,6 +33,10 @@ return {
 		event = "VeryLazy",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
 			vim.lsp.config("emmet_ls", {
 				filetypes = {
 					"css",
@@ -52,12 +62,6 @@ return {
 					})
 				end,
 			})
-			vim.lsp.config("lua_ls", {})
-			vim.lsp.config("intelephense", {})
-			vim.lsp.config("cssls", {})
-			vim.lsp.config("vtsls", {})
-			vim.lsp.config("yamlls", {})
-			vim.lsp.config("jsonls", {})
 			vim.lsp.config("*", {
 				capabilities = capabilities,
 			})
@@ -137,24 +141,20 @@ return {
 		"stevearc/conform.nvim",
 		opts = {
 			formatters_by_ft = {
-				lua = { "stylua", lsp_format = "fallback" },
-				-- Conform will run multiple formatters sequentially
-				python = { "isort", "black" },
-				-- You can customize some of the format options for the filetype (:help conform.format)
-				rust = { "rustfmt", lsp_format = "fallback" },
-				-- Conform will run the first available formatter
+				lua = { "stylua" },
+				python = { "black" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				typescript = { "prettierd", "prettier", stop_after_first = true },
 				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 				yaml = { "yamlfmt", "prettierd", "prettier", stop_after_first = true },
 				yml = { "yamlfmt", "prettierd", "prettier", stop_after_first = true },
-				php = { "intelephense", lsp_format = "fallback" },
-				astro = { "prettierd", lsp_format = "fallback" },
-				json = { "jsonls", lsp_format = "fallback" },
-				jsonc = { "jsonls", lsp_format = "fallback" },
-				markdown = { "prettierd", "cbfmt", lsp_format = "fallback", stop_after_first = true },
-				html = { "prettier", "prettierd", lsp_format = "fallback", stop_after_first = true },
+				php = { "intelephense" },
+				astro = { "prettierd", "prettier", stop_after_first = true },
+				json = { "prettierd", "prettier", stop_after_first = true },
+				jsonc = { "prettierd", "prettier", stop_after_first = true },
+				markdown = { "prettierd", "prettier", stop_after_first = true },
+				html = { "prettierd", "prettier", stop_after_first = true },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
