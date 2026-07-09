@@ -15,6 +15,7 @@ vim.g.deprecation_warnings = false
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
+opt.autoread = true -- Auto reload files changed on disk
 -- only set clipboard if not in ssh, to make sure the OSC 52
 -- integration works automatically. Requires Neovim >= 0.10.0
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Use system clipboard (disable in SSH for OSC 52)

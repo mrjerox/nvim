@@ -19,12 +19,7 @@ return {
 					"jsonls",
 					"marksman",
 					"pylsp",
-					-- "yamlfmt",
-					-- "black",
-					-- "prettierd",
-					-- "prettier",
 				},
-				-- automatic_enable = false,
 			})
 		end,
 	},
@@ -59,6 +54,19 @@ return {
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = bufnr,
 						command = "EslintFixAll",
+						callback = function()
+							pcall(function()
+								vim.lsp.buf.execute_command({
+									command = "eslint.applyAllFixes",
+									arguments = {
+										{
+											uri = vim.uri_from_bufnr(bufnr),
+											version = vim.lsp.util.buf_versions[bufnr],
+										},
+									},
+								})
+							end)
+						end,
 					})
 				end,
 			})

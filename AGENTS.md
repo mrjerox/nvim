@@ -20,6 +20,7 @@ init.lua → lua/config/{lazy,autocmds,keymaps,option}.lua
 5. **Clipboard in SSH** — Check `vim.env.SSH_TTY` before setting `clipboard = "unnamedplus"` to preserve OSC 52.
 6. **Noice config vs autocmd timing** — Don't check `vim.o.filetype` in `config()`. Use `FileType` autocmd instead.
 7. **Telescope extension dependencies** — Avoid hard-loading telescope just for `load_extension`. Use `pcall` to load extension only if telescope is already loaded.
+8. **ESLint auto-fix on save** — Use `vim.lsp.buf.execute_command({ command = "eslint.applyAllFixes", ... })` wrapped in `pcall` in a `BufWritePre` callback.
 
 ## Key Dependencies (external)
 

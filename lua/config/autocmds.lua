@@ -9,6 +9,13 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 	end,
 })
 
+-- Auto reload files on focus gain (handles tmux)
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+	callback = function()
+		vim.cmd("checktime")
+	end,
+})
+
 -- Clear all semantic highlight groups after LSP attaches
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function()
