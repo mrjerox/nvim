@@ -7,8 +7,14 @@ return {
 		},
 		config = function(_, opts)
 			require("dracula").setup(opts)
+			local colors = require("dracula").colors()
 			vim.cmd.colorscheme("dracula")
 			vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+			vim.api.nvim_set_hl(0, "DiagnosticError", { fg = colors.red })
+			vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = colors.yellow })
+			vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = colors.purple })
+			vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = colors.green })
+			vim.api.nvim_set_hl(0, "Identifier", { fg = colors.cyan })
 		end,
 	},
 	{
@@ -114,7 +120,6 @@ return {
 		version = "*",
 		event = "VeryLazy",
 		opts = function(_, opts)
-			-- don't use animate when scrolling with the mouse
 			local mouse_scrolled = false
 			for _, scroll in ipairs({ "Up", "Down" }) do
 				local key = "<ScrollWheel" .. scroll .. ">"
