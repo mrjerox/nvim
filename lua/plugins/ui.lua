@@ -22,12 +22,7 @@ return {
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			{
-				"rcarriga/nvim-notify",
-				opts = {
-					background_colour = "#000000", -- set the background color for notifications
-				},
-			},
+			"rcarriga/nvim-notify",
 		},
 		opts = {
 			lsp = {
@@ -64,7 +59,7 @@ return {
 			options = {
 				icons_enabled = true,
 				theme = "auto",
-				component_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
 					statusline = {},
@@ -84,7 +79,7 @@ return {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff", "diagnostics" },
 				lualine_c = { "filename" },
-				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_x = { "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
@@ -154,6 +149,62 @@ return {
 					}),
 				},
 			})
+		end,
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		opts = {
+			signs = {
+				add = { text = "+" },
+				change = { text = "┃" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+				untracked = { text = "┆" },
+			},
+			signs_staged = {
+				add = { text = "+" },
+				change = { text = "┃" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+				untracked = { text = "┆" },
+			},
+			signs_staged_enable = true,
+			signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+			numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+			linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+			word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+			watch_gitdir = {
+				follow_files = true,
+			},
+			auto_attach = true,
+			attach_to_untracked = false,
+			current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+			current_line_blame_opts = {
+				virt_text = true,
+				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+				delay = 1000,
+				ignore_whitespace = false,
+				virt_text_priority = 100,
+				use_focus = true,
+			},
+			current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
+			blame_formatter = nil, -- Use default
+			sign_priority = 6,
+			update_debounce = 100,
+			status_formatter = nil, -- Use default
+			max_file_length = 40000, -- Disable if file is longer than this (in lines)
+			preview_config = {
+				-- Options passed to nvim_open_win
+				style = "minimal",
+				relative = "cursor",
+				row = 0,
+				col = 1,
+			},
+		},
+		config = function(_, opts)
+			require("gitsigns").setup(opts)
 		end,
 	},
 }
