@@ -19,6 +19,7 @@ return {
 					"jsonls",
 					"marksman",
 					"pylsp",
+					"somesass_ls",
 				},
 			})
 		end,
@@ -48,7 +49,10 @@ return {
 					"vue",
 					"php",
 				},
+				capabilities = capabilities,
 			})
+			vim.lsp.config("somesass_ls", { capabilities = capabilities, filetypes = { "scss", "sass" } })
+			vim.lsp.config("cssls", { capabilities = capabilities, filetypes = { "css" } })
 			vim.lsp.config("*", {
 				capabilities = capabilities,
 			})
@@ -75,15 +79,31 @@ return {
 			local luasnip = require("luasnip")
 			local cmp = require("cmp")
 
+			-- Ignore error with some keyword
+			local cmp_snippet = require("cmp.utils.snippet")
+			local orig_parse = cmp_snippet.parse
+			cmp_snippet.parse = function(input)
+				local ok, result = pcall(orig_parse, input)
+				if ok then
+					return result
+				else
+					return nil
+				end
+			end
+
 			cmp.setup({
 				snippet = {
-					-- REQUIRED - you must specify a snippet engine
 					expand = function(args)
-						require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+						local ok, _ = pcall(function()
+							luasnip.lsp_expand(args.body)
+						end)
+						if not ok then
+							vim.fn.feedkeys(args.body, "n")
+						end
 					end,
 				},
 				sources = cmp.config.sources({
-					{ name = "luasnip" }, -- For luasnip users.
+					{ name = "luasnip" },
 					{ name = "nvim_lsp" },
 				}, {
 					{ name = "buffer" },

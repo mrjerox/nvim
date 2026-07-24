@@ -24,3 +24,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 	end,
 })
+
+-- Add $ to keyword
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "scss", "sass" },
+	callback = function()
+		-- Thêm $ vào danh sách ký tự của từ (keyword)
+		vim.opt_local.iskeyword:append("$")
+	end,
+})
