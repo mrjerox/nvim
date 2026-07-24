@@ -15,6 +15,8 @@ return {
 				"diff",
 				"html",
 				"javascript",
+				"tsx",
+				"jsx",
 				"jsdoc",
 				"json",
 				"jsonc",
@@ -51,6 +53,13 @@ return {
 		opts = {
 			transparent_bg = true, -- enable transparent background
 			italic_comment = true,
+			treesitter = true,
+			overrides = function(colors)
+				return {
+					-- ["@tag.builtin"] = { link = "@tag" },
+					["@tag.builtin.tsx"] = { link = "@tag" },
+				}
+			end,
 		},
 		config = function(_, opts)
 			require("dracula").setup(opts)

@@ -54,6 +54,9 @@ return {
 			vim.lsp.config("somesass_ls", { capabilities = capabilities, filetypes = { "scss", "sass" } })
 			vim.lsp.config("cssls", { capabilities = capabilities, filetypes = { "css" } })
 			vim.lsp.config("*", {
+				on_attach = function(client, bufnr)
+					client.server_capabilities.semanticTokensProvider = nil
+				end,
 				capabilities = capabilities,
 			})
 		end,
