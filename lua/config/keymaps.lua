@@ -55,4 +55,6 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- Go to (pcall-safe when no LSP client attached)
-map("n", "gd", function() pcall(vim.lsp.buf.definition) end, { desc = "Go to Definition" })
+map("n", "gd", function()
+	pcall(vim.lsp.buf.definition)
+end, { desc = "Go to Definition" })
