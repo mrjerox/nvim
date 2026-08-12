@@ -23,7 +23,7 @@ return {
 		},
 		config = function(_, opts)
 			require("nvim-tree").setup(opts)
-			vim.keymap.set("n", "<C-b>", function()
+			vim.keymap.set("n", "<C-e>", function()
 				vim.cmd("NvimTreeToggle")
 			end, { desc = "Telescope find files", noremap = true })
 		end,
